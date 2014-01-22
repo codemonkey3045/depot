@@ -3,5 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  @timestamp = DateTime.current.to_formatted_s(:long_ordinal);
+  helper_method :timestamp
+
+  def timestamp
+  	return Time.now.to_formatted_s(:long) 
+  end
+
+
 end
