@@ -24,7 +24,14 @@
 		</div>
 	<div>
 	<div id="main">
+		<% if @display_count %>
+			<p id="page-loads">
+				You've accessed this page <%= pluralize(@count, 'time') %>
+			</p>
+		<% end %>
+
 		<%= yield %>
+
 	</div>
 
 </body>
