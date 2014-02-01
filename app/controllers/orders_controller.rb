@@ -40,13 +40,13 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderNotifier.received(@order).deliver
-        format.html { redirect_to store_url, 
-          notice: 'Thank you for your order.' }
-        format.json { render action: 'show', status: :created, 
+        format.html { redirect_to store_url, notice: 
+          I18n.t('.thanks') }
+        format.json { render action: 'show', status: :created,
           location: @order }
       else
         format.html { render action: 'new' }
-        format.json { render json: @order.errors, 
+        format.json { render json: @order.errors,
           status: :unprocessable_entity }
       end
     end
@@ -87,10 +87,5 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 
-    def add_line_items_from_cart(cart)
-      cart.line_items.each do |item|
-        item.cart_id = nil 
-        line_items << item
-      end
-    end
+    
 end
