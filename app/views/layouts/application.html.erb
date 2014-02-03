@@ -24,7 +24,6 @@
     <div id="side">
       <% if @cart %>
         <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-<% debugger %>
           <%= render @cart %>
         <% end %>
       <% end %>
@@ -46,10 +45,8 @@
       <% end %>
 
     </div>
-    <div id="main">
-<% debugger %>      
+    <div id="main">     
       <%= yield %>
-      <%= puts params %>
     </div>
   </div>
 </body>
